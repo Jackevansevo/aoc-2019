@@ -32,7 +32,8 @@ class Node:
     def common_ancestor(self, a, b):
         # Do the same thing for all the children
         for child in self.children:
-            if a in child.leafs and b in child.leafs:
+            sub_children = child.leafs
+            if a in sub_children and b in sub_children:
                 yield from child.common_ancestor(a, b)
         # If the current node has both a and b as a leaf node, then return it
         yield self
@@ -57,4 +58,5 @@ if __name__ == "__main__":
 
 
     tree = build_from('COM')
+    print(sum(tree.orbits()))
     print(tree.distance_between('SAN', 'YOU'))
