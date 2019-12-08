@@ -1,4 +1,4 @@
-  ( processOpcode
+module Day2 ( processOpcode
   , readInstruction
   , Instruction
   , day2part1
