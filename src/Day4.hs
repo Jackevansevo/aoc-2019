@@ -20,20 +20,13 @@ frequency list = map length $ (group list)
 
 countAdjacentPairs x = frequency $ adjEqualPairs x
 
-valid :: (Ord a) => [a] -> Bool
-valid (a:b:c:d:e:f:[]) = a <= b && b <= c && c <= d && d <= e && e <= f && (a == b || b == c || c == d || d == e || e == f)
+valid input | a > b || b > c || c > d || d > e || e > f = False
+            | otherwise = (a == b || b == c || c == d || d == e || e == f)
+  where (a : b : c : d : e : f : []) = input
 
--- a a b b c d
--- a a b c c d
--- a a b c d e
-
--- a b b c c d
--- a b c d d e
--- a b c 
 
 -- TODO: 677788 Passes, when it shouldn't
-part1 = print $ length
-  [ x | x <- [130254 .. 678275], valid $ digits x ]
+part1 = print $ length [ x | x <- [130254 .. 678275], valid $ digits x ]
 
 -- part2 = print $ length
 --   [ x | x <- [130254 .. 678275], let d = digits x, newValid d, valid d ]
